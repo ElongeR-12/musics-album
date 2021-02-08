@@ -255,7 +255,7 @@ Single music
 .single-music {
   width: 90vw;
   max-width: var(--max-width);
-  margin: 4rem auto;
+  margin:15rem auto 5rem auto;
   display: grid;
   padding-bottom: 8rem;
   gap: 2rem;
@@ -300,12 +300,17 @@ Single music
 }
 
 header {
-    min-height: 20vh;
+    min-height: 15vh;
     background: #1f16a5;
     display: grid;
     place-items: center;
     text-align: center;
     color: var(--clr-primary-5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
 /*
@@ -321,9 +326,10 @@ footer {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
+    margin-bottom: -21px;
     background: #1f16a5;
     text-align: center;
-    position: fixed;
+    position: static;
     left: 0;
     right: 0;
     bottom: 0;
