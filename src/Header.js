@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = () => {
     return (
-        <header className="hero"><h1> deezer musics album</h1></header>
+        <header className="hero"><h1> musics album</h1></header>
     )
 }
 
