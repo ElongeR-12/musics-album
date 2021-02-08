@@ -9,14 +9,14 @@ const Musics = () => {
   return (
     <section className='musics'>
       {dataMusic.map((music) => {
-        const { id,title_short,rank,album } = music
+        const { id,title_short,album } = music
         return (
           <Link to={`/musics/${id}`} key={id} className='music'>
             <article>
               <img src={album.cover} alt={title_short} />
               <div className='music-info'>
                 <h4 className='title'>{title_short}</h4>
-                <p>{rank }</p>
+                <p>{album.release_date}</p>
               </div>
             </article>
           </Link>
