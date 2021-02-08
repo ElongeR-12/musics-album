@@ -53,7 +53,7 @@ const SingleMusic = () => {
         <h4>Album: {album.title}</h4>
         <h5>Duration: {duration} s</h5>
         <figure>
-            <figcaption>Preview the track:</figcaption>
+            <figcaption>Track preview :</figcaption>
             <audio
                 controls
                 src={preview}>
