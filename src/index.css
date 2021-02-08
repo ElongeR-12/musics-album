@@ -149,10 +149,8 @@ Search
 .search-form {
   width: 90vw;
   max-width: var(--max-width);
-  margin: 0 auto;
-  margin-top: 5rem;
+  margin: 13rem auto 3rem;
   text-align: center;
-  margin-bottom: 3rem;
 }
 .form-input {
   width: 100%;
