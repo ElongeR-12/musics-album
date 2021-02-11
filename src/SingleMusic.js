@@ -40,7 +40,7 @@ const SingleMusic = () => {
       </div>
     )
   }
-  const {title_short, duration, album, preview } = dataSingleMusic
+  const {title_short, artist, duration, album, preview } = dataSingleMusic
   return (
     <section className='single-music'>
       <div>
@@ -50,6 +50,7 @@ const SingleMusic = () => {
       
       <div className='single-music-info'>
         <h3>{title_short}</h3>
+        <h4>Artist: {artist.name}</h4>
         <h4>Album: {album.title}</h4>
         <h5>Duration: {duration} s</h5>
         <figure>
