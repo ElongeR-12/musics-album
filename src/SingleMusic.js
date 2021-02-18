@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { Helmet } from 'react-helmet'
 import { useParams, Link } from 'react-router-dom'
 const API_ENDPOINT_TRACK = "https://deezerdevs-deezer.p.rapidapi.com/track/"
 const REACT_APP_DEEZER_API = process.env.REACT_APP_DEEZER_API_KEY
@@ -43,6 +44,9 @@ const SingleMusic = () => {
   const {title_short, artist, duration, album, preview } = dataSingleMusic
   return (
     <section className='single-music'>
+      <Helmet>
+        <title>ElongeDev | {title_short} details with {duration} of preview</title>
+      </Helmet>
       <div>
         <h2> Music details</h2>
         <img src={album.cover} alt={title_short} />
