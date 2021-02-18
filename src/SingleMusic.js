@@ -45,7 +45,7 @@ const SingleMusic = () => {
   return (
     <section className='single-music'>
       <Helmet>
-        <title>ElongeDev | {title_short} details with {duration} of preview</title>
+        <title>ElongeDev | {title_short} by {artist} details with {duration} of preview</title>
       </Helmet>
       <div>
         <h2> Music details</h2>
