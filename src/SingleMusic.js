@@ -17,7 +17,6 @@ const SingleMusic = () => {
         setError({ show: false, msg: '' })
       } else {
         setError({ show: true, msg: datas.Error })
-        console.log('test');
       }
       setIsLoading(false)
     } catch (error) {
