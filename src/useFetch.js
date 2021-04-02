@@ -9,7 +9,7 @@ const useFetch = (urlParams) => {
     try {
       const response = await fetch(url)
       const datas = await response.json()
-      if (datas) {
+      if (datas.total) {
         setDataMusic(datas.data || datas)
         setError({ show: false, msg: '' })
       } else {
