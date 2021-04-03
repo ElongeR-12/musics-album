@@ -44,6 +44,7 @@ Variables
   --max-width: 1170px;
   --fixed-width: 620px;
 }
+#root{position:relative;min-height:100vh}
 /*
 =============== 
 Global Styles
