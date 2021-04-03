@@ -12,22 +12,21 @@ const SingleMusic = () => {
     try {
       const response = await fetch(url)
       const datas= await response.json()
-      if (datas.id) {
-        setDataSingleMusic([datas])
+      let finalData = JSON.parse(datas.contents);
+      console.log(finalData)
+      if (finalData.id) {
+        setDataSingleMusic([finalData])
         setError({ show: false, msg: '' })
       } else {
-        setError({ show: true, msg: datas.Error })
+        setError({ show: true, msg: finalData.Error })
       }
       setIsLoading(false)
     } catch (error) {
       console.log(error)
     }
   }
-  function refreshpage() {
-    window.location.reload()
-  }
   useEffect(() => {
-      fetchMusic(`${API_ENDPOINT_TRACK}${id}/?rapidapi-key=${REACT_APP_DEEZER_API}`)
+      fetchMusic(`https://api.allorigins.win/get?url=${encodeURIComponent(`${API_ENDPOINT_TRACK}${id}/?rapidapi-key=${REACT_APP_DEEZER_API}`)}`)
   }, [id])
   if (isLoading) {
     return <div className='loading'></div>
@@ -36,7 +35,7 @@ const SingleMusic = () => {
     setIsLoading(false);
     return (
       <section className='single-music'>
-          <div className="loading" onLoad={refreshpage()}></div>
+          <div className="loading"></div>
       </section>
           
     )

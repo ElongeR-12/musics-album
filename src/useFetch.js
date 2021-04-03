@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-const mainUrl = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}&q=music&index=0`
-const searchUrl = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}`
+const mainUrl = `https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}&q=music&index=0`
+const searchUrl = `https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}`
 const useFetch = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [musics, setMusics] = useState([])
@@ -9,23 +9,24 @@ const useFetch = () => {
   const fetchMusics = async () => {
     setIsLoading(true)
     let url
-    const urlPage = `&index=${index}`
-    const urlQuery = `&q=${query}`
+    let urlPage = `&index=${index}`
+    let urlQuery = `&q=${query}`
     if (query) {
       url = `${searchUrl}${urlQuery}${urlPage}`
     } else {
       url = `${mainUrl}`
     }
     try {
-      const response = await fetch(url)
-      const datas = await response.json()
+      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`${url}`)}`)
+      const datas = await response.json();
+      const finalData = JSON.parse(datas.contents);
       setMusics((oldMusics) => {
         if (query && index === 0) {
-          return datas.data
+          return finalData.data
         } else if (query) {
-          return [...oldMusics, ...datas.data]
+          return [...oldMusics, ...finalData.data]
         } else {
-          return [...oldMusics, ...datas.data]
+          return [...oldMusics, ...finalData.data]
         }
       })
       setIsLoading(false)
