@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useParams, Link } from 'react-router-dom'
 const API_ENDPOINT_TRACK = "https://deezerdevs-deezer.p.rapidapi.com/track/"
-const REACT_APP_DEEZER_API = "0fb5807642mshdb70ba68e07c274p1ca20cjsna090e1309d86"
+const REACT_APP_DEEZER_API = process.env.REACT_APP_DEEZER_API_KEY
 const SingleMusic = () => {
   const { id } = useParams()
   const [isLoading, setIsLoading] = useState(true)
@@ -33,6 +33,7 @@ const SingleMusic = () => {
     return <div className='loading'></div>
   }
   if (error.show) {
+    setIsLoading(false);
     return (
       <section className='single-music'>
           <div className="loading" onLoad={refreshpage()}></div>

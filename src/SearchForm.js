@@ -1,17 +1,24 @@
 import React from 'react'
 import { useGlobalContext } from './context'
+import { FaSearch } from 'react-icons/fa'
 const SearchForm = () => {
-  const { query, setQuery, error } = useGlobalContext()
+  const {query,setQuery,setIndex} = useGlobalContext()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setIndex(0)
+  }
   return (
-    <form className='search-form' onSubmit={(e) => e.preventDefault()}>
-      <h2>search musics</h2>
-      <input
-        type='text'
-        className='form-input'
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      {error.show && <div className='error'>{error.msg}</div>}
+    <form className='search-form'>
+          <input
+            type='text'
+            placeholder='search'
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className='form-input'
+          />
+          <button type='submit' className='submit-btn' onClick={handleSubmit}>
+            <FaSearch/>
+          </button>
     </form>
   )
 }

@@ -1,30 +1,58 @@
 import { useState, useEffect } from 'react'
-const API_ENDPOINT_SEARCH = `https://deezerdevs-deezer.p.rapidapi.com/search?rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}`
-const useFetch = (urlParams) => {
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState({ show: false, msg: '' })
-  const [dataMusic, setDataMusic] = useState(null)
-  const fetchMusics = async (url) => {
+const mainUrl = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}&q=music&index=0`
+const searchUrl = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}`
+const useFetch = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [musics, setMusics] = useState([])
+  const [index, setIndex] = useState(0)
+  const [query, setQuery] = useState('')
+  const fetchMusics = async () => {
     setIsLoading(true)
+    let url
+    const urlPage = `&index=${index}`
+    const urlQuery = `&q=${query}`
+    if (query) {
+      url = `${searchUrl}${urlQuery}${urlPage}`
+    } else {
+      url = `${mainUrl}`
+    }
     try {
       const response = await fetch(url)
       const datas = await response.json()
-      if (datas.total) {
-        setDataMusic(datas.data || datas)
-        setError({ show: false, msg: '' })
-      } else {
-        setError({ show: true, msg: datas.Error })
-      }
+      setMusics((oldMusics) => {
+        if (query && index === 0) {
+          return datas.data
+        } else if (query) {
+          return [...oldMusics, ...datas.data]
+        } else {
+          return [...oldMusics, ...datas.data]
+        }
+      })
       setIsLoading(false)
     } catch (error) {
       console.log(error)
+      setIsLoading(false)
     }
   }
   useEffect(() => {
-    if(urlParams.length>3){
-      fetchMusics(`${API_ENDPOINT_SEARCH}${urlParams}`)
-    }
-  }, [urlParams])
-  return { isLoading, error, dataMusic }
+    fetchMusics()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index])
+
+  useEffect(() => {
+    const event = window.addEventListener('scroll', () => {
+      if (
+        (!isLoading && window.innerHeight + window.scrollY) >=
+        document.body.scrollHeight - 2
+      ) {
+        setIndex((oldPage) => {
+          return oldPage + 25
+        })
+      }
+    })
+    return () => window.removeEventListener('scroll', event)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  return { isLoading,query,setQuery,setIndex, musics }
 }
 export default useFetch

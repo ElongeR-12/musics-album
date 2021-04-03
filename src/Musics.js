@@ -2,16 +2,13 @@ import React from 'react'
 import { useGlobalContext } from './context'
 import { Link } from 'react-router-dom'
 const Musics = () => {
-  const { dataMusic, isLoading } = useGlobalContext()
-  if (isLoading) {
-    return <div className='loading'></div>
-  }
+  const { musics, isLoading } = useGlobalContext()
   return (
     <section className='musics'>
-      {dataMusic.map((music) => {
+      {musics.map((music, index) => {
         const { id,title_short,album} = music
         return (
-          <Link to={`/musics/${id}`} key={id} className='music'>
+          <Link to={`/musics/${id}`} key={index} className='music'>
             <article>
               <img src={album.cover} alt={title_short} />
               <div className='music-info'>
@@ -21,7 +18,8 @@ const Musics = () => {
           </Link>
         )
       })}
-    </section>
+      {isLoading && <h2 className='musics-loading'>Loading...</h2>}
+      </section>
   )
 }
 
