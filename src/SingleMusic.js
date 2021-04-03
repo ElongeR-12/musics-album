@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useParams, Link } from 'react-router-dom'
 const API_ENDPOINT_TRACK = "https://deezerdevs-deezer.p.rapidapi.com/track/"
-const REACT_APP_DEEZER_API = process.env.REACT_APP_DEEZER_API_KEY
+const REACT_APP_DEEZER_API = "0fb5807642mshdb70ba68e07c274p1ca20cjsna090e1309d86"
 const SingleMusic = () => {
   const { id } = useParams()
   const [isLoading, setIsLoading] = useState(true)
@@ -28,15 +28,18 @@ const SingleMusic = () => {
       fetchMusic(`https://api.allorigins.win/get?url=${encodeURIComponent(`${API_ENDPOINT_TRACK}${id}/?rapidapi-key=${REACT_APP_DEEZER_API}`)}`)
   }, [id])
   if (isLoading) {
-    return <div className='loading'></div>
+    return(
+        <h2 className='musics-loading single-music-loading'>Loading...</h2>
+    )
   }
   if (error.show) {
-    setIsLoading(false);
-    return (
-      <section className='single-music'>
-          <div className="loading"></div>
-      </section>
-          
+    return(
+        <div className="error-showed">
+          <h4>Server error, we are sorry for that...</h4>
+          <Link to='/' className='btn'>
+            back home
+          </Link>
+        </div>
     )
   }
   const {title_short, artist, duration, album, preview } = dataSingleMusic[0]

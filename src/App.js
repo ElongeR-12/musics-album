@@ -4,7 +4,7 @@ import Footer from './Footer'
 import Header from './Header'
 
 import Home from './Home'
-import Music from './SingleMusic'
+import SingleMusic from './SingleMusic'
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Route path='/' exact>
         <Home />
       </Route>
-      <Route path='/musics/:id' children={<Music />} />
+      <Route path='/musics/:id' children={<SingleMusic/>} />
     </Switch>
     <Footer/>
     </>

@@ -199,6 +199,7 @@ Loading
 
 .loading {
   width: 6rem;
+  text-align: center;
   height: 6rem;
   margin-top: 10rem auto 0 auto;
   padding-bottom: 7rem;
@@ -212,8 +213,13 @@ Loading
   padding: 7rem;
   margin: 0 auto;
 }
-
-
+.single-music-loading{
+  margin-top: 5rem;
+}
+.error-showed{
+  padding-top: 15rem;
+  text-align: center;
+}
 /*
 =============== 
 musics
@@ -348,7 +354,6 @@ footer {
     background: #1f16a5;
     justify-content: center;
     position: absolute;
-    bottom: 0;
     width: 100%;
 }
 footer h5 {
