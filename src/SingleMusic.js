@@ -12,8 +12,7 @@ const SingleMusic = () => {
     try {
       const response = await fetch(url)
       const datas= await response.json()
-      let finalData = JSON.parse(datas.contents);
-      console.log(finalData)
+      let finalData = JSON.parse(datas.contents)
       if (finalData.id) {
         setDataSingleMusic([finalData])
         setError({ show: false, msg: '' })
