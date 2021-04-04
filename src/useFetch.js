@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useGlobalContext } from './context'
-const searchUrl = `https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=0fb5807642mshdb70ba68e07c274p1ca20cjsna090e1309d86`
+const searchUrl = `https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}`
 const useFetch = () => {
   const {index,setIndex,query,setQuery} = useGlobalContext()
   const [isLoading, setIsLoading] = useState(false)
