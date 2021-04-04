@@ -18,7 +18,6 @@ const useFetch = () => {
       setMusics((oldMusics) => {
         if ( index === 0) {
           if(query){
-            window.scrollBy(0,2)
             return []
           }
           return finalData.data
@@ -27,7 +26,7 @@ const useFetch = () => {
         }
       })
       setIsLoading(false)
-      
+      window.scrollBy(0,5)
     } catch (error) {
       console.log(error)
       setIsLoading(false)
