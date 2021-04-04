@@ -20,7 +20,6 @@ const useFetch = () => {
           if(query){
             return []
           }
-          window.scrollBy(0,5)
           return finalData.data
         } else {
           return [...oldMusics, ...finalData.data]
