@@ -1,10 +1,10 @@
-import React, {useContext } from 'react'
-import useFetch from './useFetch'
+import React, {useContext, useState } from 'react'
 const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
-  const {  isLoading,query,setQuery, setIndex, musics } = useFetch()
+  const [index, setIndex] = useState(0)
+  const [query, setQuery] = useState('music')
   return (
-    <AppContext.Provider value={{  isLoading,query,setQuery, setIndex, musics }}>
+    <AppContext.Provider value={{query,setQuery, index, setIndex}}>
       {children}
     </AppContext.Provider>
   )

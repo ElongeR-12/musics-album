@@ -1,35 +1,33 @@
 import { useState, useEffect } from 'react'
-const mainUrl = `https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}&q=music&index=0`
-const searchUrl = `https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}`
+import { useGlobalContext } from './context'
+const searchUrl = `https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=0fb5807642mshdb70ba68e07c274p1ca20cjsna090e1309d86`
 const useFetch = () => {
+  const {index,setIndex,query,setQuery} = useGlobalContext()
   const [isLoading, setIsLoading] = useState(false)
   const [musics, setMusics] = useState([])
-  const [index, setIndex] = useState(0)
-  const [query, setQuery] = useState('')
   const fetchMusics = async () => {
     setIsLoading(true)
     let url
     let urlPage = `&index=${index}`
     let urlQuery = `&q=${query}`
-    if (query) {
-      url = `${searchUrl}${urlQuery}${urlPage}`
-    } else {
-      url = `${mainUrl}`
-    }
+    url = `${searchUrl}${urlQuery}${urlPage}`
     try {
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`${url}`)}`)
       const datas = await response.json();
       const finalData = JSON.parse(datas.contents);
       setMusics((oldMusics) => {
-        if (query && index === 0) {
+        if ( index === 0) {
+          if(query){
+            window.scrollBy(0,2)
+            return []
+          }
           return finalData.data
-        } else if (query) {
-          return [...oldMusics, ...finalData.data]
         } else {
           return [...oldMusics, ...finalData.data]
         }
       })
       setIsLoading(false)
+      
     } catch (error) {
       console.log(error)
       setIsLoading(false)

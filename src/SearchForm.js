@@ -1,8 +1,8 @@
 import React from 'react'
-import { useGlobalContext } from './context'
 import { FaSearch } from 'react-icons/fa'
+import { useGlobalContext } from './context'
 const SearchForm = () => {
-  const {query,setQuery,setIndex} = useGlobalContext()
+  const{setIndex,query,setQuery} = useGlobalContext()
   const handleSubmit = (e) => {
     e.preventDefault()
     setIndex(0)

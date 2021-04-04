@@ -175,16 +175,7 @@ Search
   padding-top: 0.5rem;
   letter-spacing: var(--spacing);
 }
-/* .submit-btn {
-  padding: 0.75rem 1.25rem;
-  border: none;
-  text-transform: capitalize;
-  letter-spacing: var(--spacing);
-  font-size: 1.5rem;
-  background: transparent;
-  color: var(--clr-grey-5);
-  border-bottom: 3px solid var(--clr-grey-5);
-} */
+
 /*
 =============== 
 Loading
@@ -280,7 +271,7 @@ Single music
 .single-music {
   width: 90vw;
   max-width: var(--max-width);
-  margin:15rem auto 5rem auto;
+  margin:15rem auto 0 auto;
   display: grid;
   padding-bottom: 8rem;
   gap: 2rem;
@@ -354,6 +345,7 @@ footer {
     background: #1f16a5;
     justify-content: center;
     position: absolute;
+    bottom: 0;
     width: 100%;
 }
 footer h5 {

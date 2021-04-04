@@ -10,7 +10,6 @@ const Home = () => {
       </Helmet>
       <Form />
       <Musics/>
-      
     </main>
   )
 }

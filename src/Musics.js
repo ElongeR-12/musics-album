@@ -1,8 +1,8 @@
 import React from 'react'
-import { useGlobalContext } from './context'
 import { Link } from 'react-router-dom'
+import useFetch from './useFetch'
 const Musics = () => {
-  const { musics, isLoading } = useGlobalContext()
+  const { musics, isLoading } = useFetch()
   return (
     <section className='musics'>
       {musics.map((music, index) => {
