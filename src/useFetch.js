@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useGlobalContext } from './context'
 const searchUrl = `https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}`
 const useFetch = () => {
-  const {index,setIndex,query,setQuery} = useGlobalContext()
+  const {index,setIndex,query,setQuery,setIsError} = useGlobalContext()
   const [isLoading, setIsLoading] = useState(false)
   const [musics, setMusics] = useState([])
   const fetchMusics = async () => {
@@ -15,21 +15,26 @@ const useFetch = () => {
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`${url}`)}`)
       const datas = await response.json();
       const finalData = JSON.parse(datas.contents);
-      setMusics((oldMusics) => {
-        if ( index === 0) {
-          if(query){
-            return []
+      console.log(finalData.data)
+      if (finalData.data){
+        setIsLoading(true)
+        setMusics((oldMusics) => {
+          if ( index === 0) {
+            if(query){
+              setIndex(1)
+              return finalData.data
+            }
+            return finalData.data
+          } else if(index !== 0){
+            return [...oldMusics, ...finalData.data]
           }
-          return finalData.data
-        } else {
-          return [...oldMusics, ...finalData.data]
-        }
-      })
-      setIsLoading(false)
-      window.scrollBy(0,5)
+        })
+        setIsLoading(false)
+      }
     } catch (error) {
       console.log(error)
       setIsLoading(false)
+      setIsError(true)
     }
   }
   useEffect(() => {

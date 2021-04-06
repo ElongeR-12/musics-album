@@ -3,8 +3,9 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const [index, setIndex] = useState(0)
   const [query, setQuery] = useState('music')
+  const [isError, setIsError] = useState(false)
   return (
-    <AppContext.Provider value={{query,setQuery, index, setIndex}}>
+    <AppContext.Provider value={{query,setQuery, index, setIsError, isError, setIndex}}>
       {children}
     </AppContext.Provider>
   )

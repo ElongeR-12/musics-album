@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useGlobalContext } from './context'
 import useFetch from './useFetch'
 const Musics = () => {
   const { musics, isLoading } = useFetch()
+  const {isError} = useGlobalContext()
+  if(isError){
+    return(<h2 className='musics-loading'>ERROR</h2>)
+  }
   return (
     <section className='musics'>
       {musics.map((music, index) => {
