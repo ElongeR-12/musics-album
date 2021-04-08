@@ -15,7 +15,6 @@ const useFetch = () => {
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`${url}`)}`)
       const datas = await response.json();
       const finalData = JSON.parse(datas.contents);
-      console.log(finalData.data)
       if (finalData.data){
         setIsLoading(true)
         setMusics((oldMusics) => {

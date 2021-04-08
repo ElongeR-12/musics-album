@@ -1,12 +1,20 @@
 import React, {useEffect, useState} from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
+import { useGlobalContext } from './context'
 const API_ENDPOINT_TRACK = "https://deezerdevs-deezer.p.rapidapi.com/track/"
 const REACT_APP_DEEZER_API = process.env.REACT_APP_DEEZER_API_KEY
 const SingleMusic = () => {
+  const {setIndex} = useGlobalContext()
+  const history = useHistory()
   const { id } = useParams()
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState({ show: false, msg: '' })
   const [dataSingleMusic, setDataSingleMusic] = useState(null)
+  function handleClick() {
+    history.push("/")
+    window.scrollTo(0,0);
+    setIndex(0)
+  }
   const fetchMusic = async (url) => {
     setIsLoading(true)
     try {
@@ -36,9 +44,9 @@ const SingleMusic = () => {
     return(
         <div className="error-showed">
           <h4>Server error, we are sorry for that...</h4>
-          <Link to='/' className='btn'>
-            back home
-          </Link>
+          <button className='btn' onClick={handleClick}>
+            Back home
+          </button>
         </div>
     )
   }
@@ -63,9 +71,9 @@ const SingleMusic = () => {
                     <code>audio</code> element.
             </audio>
         </figure>
-        <Link to='/' className='btn'>
-          back home
-        </Link>
+        <button className='btn' onClick={handleClick}>
+            Back home
+        </button>
       </div>
     </section>
   )

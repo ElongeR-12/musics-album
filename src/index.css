@@ -304,6 +304,8 @@ Single music
   display: inline-block;
   margin-top: 0.5rem;
   letter-spacing: var(--spacing);
+  padding: 10px;
+  border: none;
 }
 @media screen and (min-width: 992px) {
   .single-music {
