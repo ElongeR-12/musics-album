@@ -4,8 +4,9 @@ const AppProvider = ({ children }) => {
   const [index, setIndex] = useState(0)
   const [query, setQuery] = useState('music')
   const [isError, setIsError] = useState(false)
+  const [isMatch, setIsMatch] = useState(true)
   return (
-    <AppContext.Provider value={{query,setQuery, index, setIsError, isError, setIndex}}>
+    <AppContext.Provider value={{query,setQuery, index, setIsError, isError, isMatch, setIsMatch,setIndex}}>
       {children}
     </AppContext.Provider>
   )

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useGlobalContext } from './context'
 const searchUrl = `https://api.deezer.com/search?redirect_uri=http%253A%252F%252Fguardian.mashape.com%252Fcallback&rapidapi-key=${process.env.REACT_APP_DEEZER_API_KEY}`
 const useFetch = () => {
-  const {index,setIndex,query,setQuery,setIsError} = useGlobalContext()
+  const {index,setIndex,query,setQuery,setIsError,setIsMatch} = useGlobalContext()
   const [isLoading, setIsLoading] = useState(false)
   const [musics, setMusics] = useState([])
   const fetchMusics = async () => {
@@ -15,7 +15,7 @@ const useFetch = () => {
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`${url}`)}`)
       const datas = await response.json();
       const finalData = JSON.parse(datas.contents);
-      if (finalData.data){
+      if (finalData.data && finalData.total > 0){
         setIsLoading(true)
         setMusics((oldMusics) => {
           if ( index === 0) {
@@ -29,6 +29,10 @@ const useFetch = () => {
           }
         })
         setIsLoading(false)
+        setIsMatch(true)
+      } else if(finalData.total === 0){
+        setIsLoading(false)
+        setIsMatch(false)
       }
     } catch (error) {
       console.log(error)
@@ -47,9 +51,9 @@ const useFetch = () => {
         (!isLoading && window.innerHeight + window.scrollY) >=
         document.body.scrollHeight - 2
       ) {
-        setIndex((oldPage) => {
-          return oldPage + 25
-        })
+          setIndex((oldPage) => {
+            return oldPage + 25
+          })
       }
     })
     return () => window.removeEventListener('scroll', event)

@@ -4,9 +4,17 @@ import { useGlobalContext } from './context'
 import useFetch from './useFetch'
 const Musics = () => {
   const { musics, isLoading } = useFetch()
-  const {isError} = useGlobalContext()
+  const {isError,isMatch} = useGlobalContext()
   if(isError){
-    return(<h2 className='musics-loading'>ERROR</h2>)
+    return(
+      <div className="error-showed">
+          <h4>error found, we are sorry for that...</h4>
+          <h5>Please retry later</h5>
+      </div>
+    )
+  }
+  if(!isMatch){
+    return(<h3 className='musics-loading'>No results match your search criteria...</h3>)
   }
   return (
     <section className='musics'>
