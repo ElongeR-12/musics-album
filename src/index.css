@@ -307,6 +307,16 @@ Single music
   padding: 10px;
   border: none;
 }
+.arrow{
+    position: fixed;
+    z-index: 1;
+    background: none;
+    border: none;
+    top: 80%;
+}
+.arrow svg{
+  color:black
+}
 @media screen and (min-width: 992px) {
   .single-music {
     grid-template-columns: 1fr 2fr;

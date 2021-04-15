@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from './context'
+import {FaArrowAltCircleUp} from 'react-icons/fa'
 import useFetch from './useFetch'
 const Musics = () => {
   const { musics, isLoading } = useFetch()
@@ -32,6 +33,9 @@ const Musics = () => {
         )
       })}
       {isLoading && <h2 className='musics-loading'>Loading...</h2>}
+      <button className='arrow'>
+        <FaArrowAltCircleUp size={28}></FaArrowAltCircleUp>
+      </button>
       </section>
   )
 }
