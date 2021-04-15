@@ -313,6 +313,7 @@ Single music
     background: none;
     border: none;
     top: 80%;
+    cursor: pointer;
 }
 .arrow svg{
   color:black

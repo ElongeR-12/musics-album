@@ -5,8 +5,11 @@ const AppProvider = ({ children }) => {
   const [query, setQuery] = useState('music')
   const [isError, setIsError] = useState(false)
   const [isMatch, setIsMatch] = useState(true)
+  const upTo = ()=>{
+    window.scrollTo(0,0)
+  }
   return (
-    <AppContext.Provider value={{query,setQuery, index, setIsError, isError, isMatch, setIsMatch,setIndex}}>
+    <AppContext.Provider value={{query,setQuery, index, upTo,setIsError, isError, isMatch, setIsMatch,setIndex}}>
       {children}
     </AppContext.Provider>
   )

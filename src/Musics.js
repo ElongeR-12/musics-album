@@ -5,7 +5,7 @@ import {FaArrowAltCircleUp} from 'react-icons/fa'
 import useFetch from './useFetch'
 const Musics = () => {
   const { musics, isLoading } = useFetch()
-  const {isError,isMatch} = useGlobalContext()
+  const {isError,isMatch,upTo} = useGlobalContext()
   if(isError){
     return(
       <div className="error-showed">
@@ -33,7 +33,7 @@ const Musics = () => {
         )
       })}
       {isLoading && <h2 className='musics-loading'>Loading...</h2>}
-      <button className='arrow'>
+      <button className='arrow' onClick={upTo}>
         <FaArrowAltCircleUp size={28}></FaArrowAltCircleUp>
       </button>
       </section>
