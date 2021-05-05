@@ -113,7 +113,7 @@ const SingleMusic = () => {
             </> 
           : (
             <>
-              <h3>Youtube video search result</h3>
+              <h3>Youtube video {`${"("+title_short+" of "+artist.name+")"}`} search results</h3>
               <ul className="items">
                 {list.map(item => (
                   <li className="item" key={item.id}>
