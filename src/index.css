@@ -507,9 +507,9 @@ footer h5 {
 }
 
 .underline {
-  width: 6rem;
+  width: 10rem;
   height: .25rem;
-  background: var(--clr-primary-1);
+  background: var(--clr-primary-4);
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 3.5rem
