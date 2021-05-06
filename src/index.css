@@ -403,7 +403,7 @@ footer {
     "m";
 }
 .item:hover { transform: scale(1.02); }
-.item div { grid-area: d; margin-left: auto; margin-right: auto; }
+.item div { grid-area: d; margin-left: auto; margin-right: auto; border-radius:10px ; -webkit-border-radius:10px ; -moz-border-radius:10px ; -ms-border-radius:10px ; -o-border-radius:10px ; }
 .item P { grid-area: i; margin-left: auto; margin-right: auto;}
 .item ul  { grid-area: m;  margin-left: auto; margin-right: auto;}
 .meta {
