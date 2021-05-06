@@ -106,11 +106,13 @@ const SingleMusic = () => {
         (list.length === 0
           ? <>
               <h2>Youtube video search result</h2>
+              <div className="underline"></div>
               <p>No results from youtube</p>
             </> 
           : (
             <>
               <h3>Youtube video {`${"("+title_short+" of "+artist.name+")"}`} search results</h3>
+              <div className="underline"></div>
               <ul className="items">
                 {list.map(item => (
                   <li className="item" key={item.id}>
