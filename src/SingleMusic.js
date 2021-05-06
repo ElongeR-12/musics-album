@@ -28,7 +28,6 @@ const SingleMusic = () => {
     }
   });
   const body = await response.json();
-  console.log(body);
   return body.items.filter(item => item.type === 'video');
 }
   function handleClick() {
@@ -45,9 +44,7 @@ const SingleMusic = () => {
       
       if (finalData.id) {
         setDataSingleMusic([finalData])
-        console.log(finalData);
         setQuery(`${finalData.artist.name}"+"${finalData.title_short}"+"${finalData.artist.album}`)
-        console.log(query);
         search()
         setError({ show: false, msg: '' })
       } else {
