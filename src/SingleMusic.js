@@ -105,9 +105,9 @@ const SingleMusic = () => {
     {list &&
         (list.length === 0
           ? <>
-              <h2>Youtube video search result</h2>
+              <h3>Youtube video search result</h3>
               <div className="underline"></div>
-              <p>No results from youtube</p>
+              <p>No result about {`${title_short+" of "+artist.name}`} from youtube</p>
             </> 
           : (
             <>
