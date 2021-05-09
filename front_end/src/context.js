@@ -7,6 +7,7 @@ const AppProvider = ({ children }) => {
   const [isMatch, setIsMatch] = useState(true)
   const upTo = ()=>{
     window.scrollTo(0,0)
+    
   }
   return (
     <AppContext.Provider value={{query,setQuery, index, upTo,setIsError, isError, isMatch, setIsMatch,setIndex}}>
