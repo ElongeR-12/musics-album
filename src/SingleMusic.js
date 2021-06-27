@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import ReactPlayer from "react-player"
-import {FaRegHeart} from 'react-icons/fa'
 import { useGlobalContext } from './context'
 const API_ENDPOINT_TRACK = "https://deezerdevs-deezer.p.rapidapi.com/track/"
 const REACT_APP_DEEZER_API = process.env.REACT_APP_DEEZER_API_KEY
@@ -122,11 +121,10 @@ const SingleMusic = () => {
                       <li>Views: {item.views}</li>
                       <li>Duration: {item.duration}</li>
                       <li>Uploaded: {item.uploaded_at}</li>
-                      <li><button><FaRegHeart/></button></li>
                     </ul>
                     <div className="player-wrapper">
                       <ReactPlayer
-                              url={item.link}
+                              url={item.url}
                               className="react-player"
                       />
                     </div>
