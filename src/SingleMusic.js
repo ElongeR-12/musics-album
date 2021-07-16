@@ -123,6 +123,7 @@ const SingleMusic = () => {
                       <li>Uploaded: {item.uploaded_at}</li>
                     </ul>
                     <div className="player-wrapper">
+                    {!item.url && <h2 className='musics-loading'>Loading...</h2>}
                       <ReactPlayer
                               url={item.url}
                               className="react-player"
